@@ -1,6 +1,4 @@
-import boto3
 import math
-import logging
 import pandas as pd
 import xml.etree.ElementTree as et
 
@@ -8,6 +6,9 @@ class ServiceRequestAppraiser:
     matrix = None
 
     def __EvaluateCablingIC(self, details, price):
+        """
+            Calculates the cost of selling and installing network cables
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -31,6 +32,9 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateCablingBM(self, details, price):
+        """
+            Calculates the cost of maintaining network cables
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -48,6 +52,9 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateRacksIC(self, details, price):
+        """
+            Calculates the cost of selling and installing server racks
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -65,12 +72,18 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateRacksBM(self, details, price):
+        """
+            Calculates the cost of maintaining server racks
+        """
         locs = int(details["eligible_entities"])
         mprice = float(price.find("support_price").text)
 
         return locs * mprice
 
     def __EvaluateSwitchesIC(self, details, price):
+        """
+            Calculates the cost of selling and installing network switches
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -92,6 +105,9 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateSwitchesBM(self, details, price):
+        """
+            Calculates the cost of maintaining network switches
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -107,6 +123,9 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateWapIC(self, details, price):
+        """
+            Calculates the cost of selling and installing wireless access points
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -126,6 +145,9 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateWapBM(self, details, price):
+        """
+            Calculates the cost of maintaining wireless access points
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -140,6 +162,9 @@ class ServiceRequestAppraiser:
         return each * mprice
 
     def __EvaluateControllerIC(self, details, price):
+        """
+            Calculates the cost of selling and installing wireless controllers
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -159,6 +184,9 @@ class ServiceRequestAppraiser:
         return estimate
 
     def __EvaluateControllerBM(self, details, price):
+        """
+            Calculates the cost of maintaining wireless controllers
+        """
         estimate = 0
         qty = int(details["quantity"])
         locs = int(details["eligible_entities"])
@@ -173,6 +201,9 @@ class ServiceRequestAppraiser:
         return each * mprice
 
     def __init__(self):
+        """
+            Instantiate an ServiceRequestAppraiser object by loading the function matrix
+        """
         self.matrix = pd.DataFrame({
             "Cabling":[self.__EvaluateCablingIC, self.__EvaluateCablingBM],
             "Racks":[self.__EvaluateRacksIC, self.__EvaluateRacksBM],

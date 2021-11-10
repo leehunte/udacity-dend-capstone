@@ -35,7 +35,7 @@ class EvaluateRequestsOperator(BaseOperator):
 
     def __GetPriceNode(self, funct, manuf):
         """
-        Description: given a Service Function and Manufacturer name, search the pricing XML for an appropriate product node 
+        Given a Service Function and Manufacturer name, search the pricing XML for an appropriate pricing node
         """
         manuf = manuf[7:] if manuf.startswith("Other: ") else manuf
 

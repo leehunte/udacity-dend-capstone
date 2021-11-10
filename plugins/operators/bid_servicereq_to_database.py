@@ -2,8 +2,6 @@ import json
 import numpy as np
 import pandas as pd
 
-from datetime import datetime, timedelta
-
 from helpers import SqlQueries,ColumnLists,ServiceSelector
 
 from airflow.models import BaseOperator

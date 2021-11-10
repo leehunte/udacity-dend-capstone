@@ -2,6 +2,9 @@ class ServiceSelector:
     keywords = ["WAP","wireless access point","wireless points","access point"]
 
     def is_applicable_request(description):
+        """
+            Assess the description parameter for keywords and return the result
+        """
         deliberation = False
 
         if description is not None:
@@ -17,6 +20,9 @@ class ServiceSelector:
         return deliberation
 
     def replace_with_other_value(pair):
+        """
+            Concatenate the two provided variables if the secondary variables contains text
+        """
         pass_back = pair[0]
 
         if ((pair[1] is not None) and (len(pair[1]) > 0)):

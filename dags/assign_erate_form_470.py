@@ -10,15 +10,20 @@ from operators import (
 
 
 # Python Functions
-## log_exec_start function replaces the logic of the dummy operator,
-## to log the beginning of the DAG
 def log_exec_start(*args, **kwargs):
+    """
+        log_exec_start function replaces the logic of the dummy operator,
+        to log the beginning of the DAG
+    """
     current_time = datetime.now()
     logging.info(f"DAG: {kwargs['run_id']} - Execution began at {current_time}")
 
-## log_exec_end function replaces the logic of the dummy operator,
-## to log the completion of the DAG
+
 def log_exec_end(*args, **kwargs):
+    """
+        log_exec_end function replaces the logic of the dummy operator,
+        to log the completion of the DAG
+    """
     current_time = datetime.now()
     logging.info(f"DAG: {kwargs['run_id']} - Execution completed at {current_time}")
 
